@@ -3,231 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nguyễn Trương Tín | Kỹ sư CLC EE | Portfolio Kỹ thuật Số</title>
+    <title>Vũ trụ Không gian | Nguyễn Trương Tín</title>
     <style>
-        /* CSS Cơ bản */
-        :root {
-            --cyan: #00bcd4;
-            --dark-cyan: #006064;
-            --white: #ffffff;
-            --dark-blue: #010409;
-            --box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
-            --transition: all 0.3s ease-in-out;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background-color: var(--dark-blue); color: #fff; overflow-x: hidden; }
-        a { text-decoration: none; color: inherit; }
-
-        /* Header */
-        header { background: rgba(1, 4, 9, 0.9); color: #fff; padding: 1rem 0; position: fixed; top: 0; width: 100%; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.2); backdrop-filter: blur(5px); }
-        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .logo { font-size: 1.8rem; font-weight: bold; color: var(--cyan); text-shadow: 0 0 10px var(--cyan); }
-
-        /* HERO SECTION (Nổi bật nhất) */
-        #hero {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            overflow: hidden;
-            padding: 0 20px;
-        }
-
-        /* Nền Hologram 3D (Canvas) */
-        #hero-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.15;
-            z-index: 1;
-        }
-
-        .hero-content { z-index: 2; position: relative; }
-        .hero-content h1 { font-size: 4.5rem; text-transform: uppercase; letter-spacing: 3px; background: linear-gradient(90deg, #fff, var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: pulse 2s infinite alternate; }
-        .hero-content h2 { font-size: 1.8rem; color: #b0bec5; margin-bottom: 20px; font-weight: 400; }
-        .hero-btn { display: inline-block; background-color: var(--cyan); color: #fff; padding: 12px 30px; border-radius: 5px; font-weight: bold; transition: var(--transition); box-shadow: var(--box-shadow); }
-        .hero-btn:hover { background-color: #fff; color: var(--cyan); transform: translateY(-5px); }
-
-        /* Các điểm nối mạch tương tác (Interactive Nodes) */
-        .interactive-nodes {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0; left: 0;
-            z-index: 2;
-        }
-
-        .node {
-            position: absolute;
-            width: 10px; height: 10px;
-            background: var(--cyan);
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 0 10px var(--cyan);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .node:hover { transform: scale(1.5); box-shadow: 0 0 25px #fff; }
-
-        /* Nhãn hiển thị từ khóa */
-        .node-label {
-            position: absolute;
-            background: rgba(0, 96, 100, 0.9);
+        body {
+            background-color: #000;
+            overflow: hidden; /* Ẩn thanh cuộn */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #fff;
-            padding: 5px 12px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s, transform 0.3s;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%) translateY(10px);
-            box-shadow: 0 0 10px var(--cyan);
         }
 
-        .node:hover .node-label { opacity: 1; transform: translateX(-50%) translateY(0); }
+        /* Lớp phủ nội dung ở giữa */
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+            pointer-events: none; /* Để chuột xuyên qua tác động lên canvas */
+        }
 
-        /* Phần Kỹ năng & Dự án (Fade-in mượt) */
-        section { padding: 100px 20px; max-width: 1100px; margin: 0 auto; opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
-        .section-visible { opacity: 1; transform: translateY(0); }
-        h2 { font-size: 2.5rem; color: var(--cyan); margin-bottom: 40px; text-align: center; }
+        .content h1 {
+            font-size: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            background: linear-gradient(90deg, #00d2ff 0%, #3a7bd5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+            margin-bottom: 10px;
+        }
 
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-        .skill-tag { background: #011627; color: var(--cyan); padding: 15px; border-radius: 8px; text-align: center; font-weight: bold; border: 1px solid var(--dark-cyan); }
+        .content p {
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            color: #8892b0;
+            text-transform: uppercase;
+        }
 
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .project-card { background: #011627; border: 1px solid var(--dark-cyan); border-radius: 8px; padding: 20px; }
-        .project-img { height: 150px; background: #0d2137; border-radius: 4px; margin-bottom: 15px; display: flex; justify-content: center; align-items: center; color: rgba(255,255,255,0.1); font-size: 2rem; }
-
-        /* Animations */
-        @keyframes pulse { 0% { opacity: 1; } 100% { opacity: 0.8; } }
+        canvas {
+            display: block;
+            width: 100vw;
+            height: 100vh;
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <nav>
-            <div class="logo">NTT.CLC.EE</div>
-        </nav>
-    </header>
+    <div class="content">
+        <h1>Nguyễn Trương Tín</h1>
+        <p>Không gian Kỹ thuật số</p>
+    </div>
 
-    <section id="hero">
-        <canvas id="hero-canvas"></canvas>
-        <div class="interactive-nodes">
-            <div class="node" style="top: 25%; left: 15%;"><span class="node-label">Mạch In PCB</span></div>
-            <div class="node" style="top: 35%; left: 80%;"><span class="node-label">Điện Tử Công Suất</span></div>
-            <div class="node" style="top: 60%; left: 5%;"><span class="node-label">Lập trình STM32</span></div>
-            <div class="node" style="top: 65%; left: 90%;"><span class="node-label">PLC TIA Portal</span></div>
-            <div class="node" style="top: 15%; left: 55%;"><span class="node-label">Mô Phỏng PSIM</span></div>
-            <div class="node" style="top: 80%; left: 30%;"><span class="node-label">Altium Designer</span></div>
-            <div class="node" style="top: 75%; left: 70%;"><span class="node-label">Ansys Maxwell</span></div>
-        </div>
-        <div class="hero-content">
-            <h2>Kỹ sư CLC EE | K48</h2>
-            <h1>Nguyễn Trương Tín</h1>
-            <p style="color: #b0bec5; max-width: 600px; margin: 0 auto 30px;">Khám phá danh mục các dự án kỹ thuật chuyên sâu về điện tử công suất, hệ thống năng lượng và lập trình nhúng của tôi.</p>
-            <a href="#projects" class="hero-btn">Xem Dự án của tôi</a>
-        </div>
-    </section>
-
-    <section id="skills">
-        <h2>Kỹ năng cốt lõi</h2>
-        <div class="skills-grid">
-            <div class="skill-tag">Phân tích Hệ thống Điện</div>
-            <div class="skill-tag">Điện tử Công suất</div>
-            <div class="skill-tag">Lập trình Nhúng</div>
-            <div class="skill-tag">Tự động hóa PLC</div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2>Dự án Nổi bật</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-img">DC-DC</div>
-                <h3>Bộ chuyển đổi hai chiều Boost | Z-source</h3>
-                <p style="font-size: 0.9rem; color: #b0bec5;">Nghiên cứu mô phỏng bộ chuyển đổi DC-DC hai chiều phục vụ sạc xả pin.</p>
-            </div>
-            <div class="project-card">
-                <div class="project-img">220 kV</div>
-                <h3>Thiết kế Trạm biến áp 220 kV</h3>
-                <p style="font-size: 0.9rem; color: #b0bec5;">Thiết kế tổng thể, tính toán ngắn mạch ma trận tổng dẫn nút.</p>
-            </div>
-        </div>
-    </section>
+    <canvas id="universe"></canvas>
 
     <script>
-        // Hiệu ứng Fade-in mượt mà khi cuộn tới phần
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('section-visible');
-                }
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('section:not(#hero)').forEach((sec) => observer.observe(sec));
-
-        // Nền Hologram Mạch Điện (Canvas)
-        const canvas = document.getElementById('hero-canvas');
+        const canvas = document.getElementById('universe');
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
 
-        const nodes = [];
-        const numNodes = 100;
+        let width, height;
+        let stars = [];
+        const numStars = 800; // Số lượng ngôi sao
+        let speed = 2; // Tốc độ bay (warp speed)
 
-        for (let i = 0; i < numNodes; i++) {
-            nodes.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                radius: Math.random() * 2 + 1,
-                vx: Math.random() * 0.5 - 0.25, // Tốc độ chậm hơn
-                vy: Math.random() * 0.5 - 0.25
-            });
+        // Tọa độ chuột để tạo hiệu ứng chuyển động
+        let mouseX = 0;
+        let mouseY = 0;
+        let centerX, centerY;
+
+        function init() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            centerX = width / 2;
+            centerY = height / 2;
+
+            stars = [];
+            for (let i = 0; i < numStars; i++) {
+                stars.push(new Star());
+            }
         }
 
-        function drawCircuit() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = 'rgba(0, 188, 212, 0.6)';
-            ctx.strokeStyle = 'rgba(0, 188, 212, 0.1)';
+        // Lớp Ngôi sao 3D
+        class Star {
+            constructor() {
+                this.x = Math.random() * width - centerX;
+                this.y = Math.random() * height - centerY;
+                this.z = Math.random() * width; // Chiều sâu 3D
+                this.pz = this.z; // Chiều sâu khung hình trước (để vẽ vệt sáng)
+            }
 
-            for (let i = 0; i < numNodes; i++) {
-                ctx.beginPath();
-                ctx.arc(nodes[i].x, nodes[i].y, nodes[i].radius, 0, Math.PI * 2);
-                ctx.fill();
+            update() {
+                this.z -= speed; // Ngôi sao bay về phía camera
 
-                nodes[i].x += nodes[i].vx;
-                nodes[i].y += nodes[i].vy;
-
-                if (nodes[i].x > canvas.width || nodes[i].x < 0) nodes[i].vx *= -1;
-                if (nodes[i].y > canvas.height || nodes[i].y < 0) nodes[i].vy *= -1;
-
-                for (let j = i + 1; j < numNodes; j++) {
-                    const dist = Math.sqrt((nodes[i].x - nodes[j].x)**2 + (nodes[i].y - nodes[j].y)**2);
-                    if (dist < 120) {
-                        ctx.beginPath();
-                        ctx.moveTo(nodes[i].x, nodes[i].y);
-                        ctx.lineTo(nodes[j].x, nodes[j].y);
-                        ctx.stroke();
-                    }
+                // Nếu sao bay qua màn hình, reset nó lại tít đằng xa
+                if (this.z < 1) {
+                    this.x = Math.random() * width - centerX;
+                    this.y = Math.random() * height - centerY;
+                    this.z = width;
+                    this.pz = this.z;
                 }
             }
-            requestAnimationFrame(drawCircuit);
-        }
-        drawCircuit();
 
-        // Xử lý resize canvas khi đổi kích thước cửa sổ
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            draw() {
+                // Ánh xạ tọa độ 3D sang 2D màn hình
+                let sx = (this.x / this.z) * width + centerX;
+                let sy = (this.y / this.z) * height + centerY;
+
+                // Tọa độ của khung hình trước đó (tạo vệt sáng)
+                let px = (this.x / this.pz) * width + centerX;
+                let py = (this.y / this.pz) * height + centerY;
+
+                this.pz = this.z;
+
+                // Thay đổi màu sắc và độ sáng dựa vào khoảng cách
+                let brightness = (1 - this.z / width);
+                ctx.lineWidth = brightness * 3;
+                
+                // Hiệu ứng màu xanh Electric Blue
+                ctx.strokeStyle = `rgba(0, 210, 255, ${brightness})`; 
+
+                // Vẽ vệt sao
+                ctx.beginPath();
+                ctx.moveTo(px, py);
+                ctx.lineTo(sx, sy);
+                ctx.stroke();
+            }
+        }
+
+        function animate() {
+            // Hiệu ứng làm mờ nhẹ khung hình trước thay vì xóa hẳn (tạo ảo giác siêu tốc độ)
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+            ctx.fillRect(0, 0, width, height);
+
+            // Cập nhật vị trí trung tâm vũ trụ dựa trên chuột (parallax effect)
+            centerX += (width / 2 - mouseX - centerX) * 0.05;
+            centerY += (height / 2 - mouseY - centerY) * 0.05;
+
+            // Di chuyển và vẽ các ngôi sao
+            for (let star of stars) {
+                star.update();
+                star.draw();
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        // Lắng nghe sự kiện
+        window.addEventListener('resize', init);
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX - width / 2;
+            mouseY = e.clientY - height / 2;
         });
+
+        // Bắt đầu
+        init();
+        animate();
     </script>
 </body>
 </html>
