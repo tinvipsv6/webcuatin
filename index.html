@@ -3,190 +3,410 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nguyễn Trương Tín | Portfolio Kỹ thuật Điện</title>
+    <title>Nguyễn Trương Tín | Kỹ sư Kỹ thuật Điện CLC | Portfolio Ấn tượng</title>
     <style>
-        /* CSS Cơ bản & Khởi tạo */
+        /* CSS Khởi tạo & Cơ bản */
+        :root {
+            --primary-color: #00bcd4; /* Xanh Cyan */
+            --secondary-color: #fdd835; /* Vàng sáng */
+            --dark-color: #263238; /* Xám đen đậm */
+            --light-bg: #eceff1;
+            --white: #ffffff;
+            --text-color: #37474f;
+            --box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease-in-out;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth; /* Cuộn mượt mà */
         }
+
         body {
-            background-color: #f4f7f6;
-            color: #333;
+            background-color: var(--light-bg);
+            color: var(--text-color);
             line-height: 1.6;
+            overflow-x: hidden; /* Ngăn chặn cuộn ngang khi có hiệu ứng */
         }
+
         a {
             text-decoration: none;
-            color: #0056b3;
+            color: inherit;
         }
-        
-        /* Header & Điều hướng */
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 1rem 0;
-            position: sticky;
+
+        ul {
+            list-style: none;
+        }
+
+        /* Hiệu ứng Mạch điện Nền cho Hero Section */
+        #hero-circuit {
+            position: absolute;
             top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 1;
+            opacity: 0.1;
         }
+
+        /* Header & Thanh Điều Hướng */
+        header {
+            background-color: rgba(38, 50, 56, 0.9);
+            color: var(--white);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            backdrop-filter: blur(5px); /* Hiệu ứng mờ nền */
+        }
+
         nav {
             display: flex;
             justify-content: space-between;
-            max-width: 1100px;
+            align-items: center;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-            align-items: center;
-        }
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        .nav-links a {
-            color: white;
-            margin-left: 20px;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        .nav-links a:hover {
-            color: #3498db;
         }
 
-        /* Phần Giới thiệu (Hero Section) */
-        #about {
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+        }
+
+        .nav-links a {
+            margin-left: 30px;
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Phần Hero (Giới thiệu) */
+        #hero {
+            position: relative;
+            height: 100vh;
+            background-color: var(--dark-color);
+            color: var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            padding: 80px 20px;
-            background-color: #fff;
-            border-bottom: 1px solid #e0e0e0;
+            overflow: hidden;
+            padding: 0 20px;
         }
-        #about h1 {
-            font-size: 2.8rem;
-            color: #2c3e50;
+
+        .hero-content {
+            z-index: 2;
+            animation: slideInFromTop 1s ease-out;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
             margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
-        #about h2 {
-            font-size: 1.5rem;
-            color: #7f8c8d;
-            margin-bottom: 20px;
+
+        .hero-content h2 {
+            font-size: 1.8rem;
             font-weight: 400;
+            color: #b0bec5;
+            margin-bottom: 30px;
         }
-        #about p {
-            max-width: 700px;
+
+        .hero-btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0,188,212,0.4);
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-5px);
+            background-color: var(--white);
+            color: var(--primary-color);
+            box-shadow: 0 8px 20px rgba(255,255,255,0.4);
+        }
+
+        /* Phần Giới thiệu (About Me) */
+        #about {
+            padding: 100px 20px;
+            background-color: var(--white);
+        }
+
+        .about-grid {
+            max-width: 1000px;
             margin: 0 auto;
-            color: #555;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .about-text h2::before {
+            content: 'Giới thiệu';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            color: #f1f1f1;
+            font-size: 1.2rem;
+            font-weight: 400;
+            z-index: -1;
+        }
+
+        .about-text p {
             font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .about-stats {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .stat-card {
+            background-color: var(--light-bg);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05);
+            background-color: var(--white);
+        }
+
+        .stat-card .stat-number {
+            font-size: 3rem;
+            color: var(--primary-color);
+            font-weight: bold;
         }
 
         /* Phần Kỹ năng */
         #skills {
-            max-width: 1100px;
-            margin: 50px auto;
-            padding: 0 20px;
+            padding: 100px 20px;
+            background-color: var(--light-bg);
         }
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            color: #2c3e50;
-            margin-bottom: 40px;
-            position: relative;
-        }
-        .section-title::after {
-            content: '';
-            width: 60px;
-            height: 3px;
-            background-color: #3498db;
-            display: block;
-            margin: 10px auto 0;
-        }
+
         .skills-grid {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
         }
-        .skill-tag {
-            background-color: #e8f4f8;
-            color: #2980b9;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            border: 1px solid #bde0f2;
+
+        .skill-item {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .skill-item:hover {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .skill-item:nth-child(even) {
+            transform: translateY(-10px);
+        }
+
+        .skill-item h4 {
+            font-size: 1.2rem;
+            color: var(--dark-color);
+            margin-top: 15px;
         }
 
         /* Phần Dự án */
         #projects {
-            background-color: #fff;
-            padding: 60px 20px;
-            border-top: 1px solid #e0e0e0;
-            border-bottom: 1px solid #e0e0e0;
+            padding: 100px 20px;
+            background-color: var(--white);
         }
-        .projects-container {
-            max-width: 1100px;
+
+        .projects-grid {
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
         }
+
         .project-card {
-            background: #fff;
-            border: 1px solid #eaeaea;
+            background: var(--light-bg);
             border-radius: 8px;
-            padding: 25px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            opacity: 0;
+            transform: scale(0.9);
         }
+
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
         }
-        .project-title {
-            font-size: 1.3rem;
-            color: #2c3e50;
+
+        .project-img {
+            height: 200px;
+            background-color: var(--dark-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: rgba(255,255,255,0.2);
+            font-size: 2.5rem;
+        }
+
+        .project-details {
+            padding: 25px;
+        }
+
+        .project-details h3 {
+            font-size: 1.4rem;
+            color: var(--dark-color);
             margin-bottom: 10px;
         }
+
         .project-tools {
-            font-size: 0.85rem;
-            color: #e67e22;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            font-weight: 500;
             margin-bottom: 15px;
-            font-weight: bold;
         }
-        .project-desc {
-            font-size: 0.95rem;
-            color: #666;
+
+        .project-details p {
+            font-size: 1rem;
+            color: #546e7a;
+            margin-bottom: 20px;
+        }
+
+        .project-link {
+            display: inline-block;
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .project-link:hover {
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
         }
 
         /* Phần Liên hệ */
         #contact {
+            padding: 100px 20px;
+            background-color: var(--dark-color);
+            color: var(--white);
             text-align: center;
-            padding: 60px 20px;
-            max-width: 800px;
-            margin: 0 auto;
         }
+
+        .contact-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-content p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
         .contact-btn {
             display: inline-block;
-            background-color: #3498db;
-            color: white;
+            background-color: var(--white);
+            color: var(--dark-color);
             padding: 12px 30px;
             border-radius: 5px;
-            font-size: 1.1rem;
             font-weight: bold;
-            margin-top: 20px;
-            transition: background-color 0.3s;
+            font-size: 1.2rem;
+            transition: var(--transition);
         }
+
         .contact-btn:hover {
-            background-color: #2980b9;
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
         }
 
         /* Footer */
         footer {
-            background-color: #2c3e50;
-            color: white;
+            padding: 20px;
+            background-color: #1a252a;
+            color: rgba(255,255,255,0.5);
             text-align: center;
-            padding: 20px 0;
             font-size: 0.9rem;
+        }
+
+        /* Keyframes Animations */
+        @keyframes slideInFromTop {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* JavaScript-triggered animations */
+        .show-skill-item {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        .show-project-card {
+            opacity: 1 !important;
+            transform: scale(1) !important;
         }
     </style>
 </head>
@@ -195,67 +415,186 @@
     <header>
         <nav>
             <div class="logo">NTT.</div>
-            <div class="nav-links">
-                <a href="#about">Giới thiệu</a>
-                <a href="#skills">Kỹ năng</a>
-                <a href="#projects">Dự án</a>
-                <a href="#contact">Liên hệ</a>
-            </div>
+            <ul class="nav-links">
+                <li><a href="#hero">Trang chủ</a></li>
+                <li><a href="#about">Giới thiệu</a></li>
+                <li><a href="#skills">Kỹ năng</a></li>
+                <li><a href="#projects">Dự án</a></li>
+                <li><a href="#contact">Liên hệ</a></li>
+            </ul>
         </nav>
     </header>
 
+    <section id="hero">
+        <canvas id="hero-circuit"></canvas>
+        <div class="hero-content">
+            <h2>Học viên Kỹ thuật Điện CLC - Khóa 48</h2>
+            <h1>Nguyễn Trương Tín</h1>
+            <p style="color: #b0bec5; max-width: 600px; margin: 0 auto 30px; font-size: 1.1rem;">Khám phá danh mục các dự án kỹ thuật chuyên sâu về điện tử công suất, hệ thống năng lượng và lập trình nhúng của tôi.</p>
+            <a href="#projects" class="hero-btn">Xem Dự án của tôi</a>
+        </div>
+    </section>
+
     <section id="about">
-        <h1>Nguyễn Trương Tín</h1>
-        <h2>Sinh viên Kỹ thuật Điện (CLC) - Khóa 48</h2>
-        <p>Đam mê nghiên cứu và phát triển các hệ thống điện tử công suất, thiết kế trạm biến áp và lập trình tự động hóa. Định hướng trở thành một kỹ sư chuyên nghiệp, có khả năng giải quyết các bài toán kỹ thuật phức tạp từ lý thuyết đến thực hành.</p>
+        <div class="about-grid">
+            <div class="about-text">
+                <h2>Cảm hứng Kỹ thuật</h2>
+                <p>Tôi là một sinh viên năng động của Khóa 48, ngành Kỹ thuật Điện Chất lượng cao. Tôi có một tình yêu sâu sắc với việc nghiên cứu và giải quyết các bài toán kỹ thuật phức tạp, đặc biệt là trong các lĩnh vực điện tử công suất, thiết kế trạm biến áp, và điều khiển tự động.</p>
+                <p>Tôi không chỉ dừng lại ở lý thuyết; tôi luôn tìm cách áp dụng kiến thức vào thực tiễn thông qua các dự án thực tế. Mỗi dự án là một cơ hội để tôi vượt qua giới hạn của bản thân.</p>
+            </div>
+            <div class="about-stats">
+                <div class="stat-card">
+                    <div class="stat-number">2+</div>
+                    <div class="stat-label">Năm kinh nghiệm</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3+</div>
+                    <div class="stat-label">Dự án chuyên sâu</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">48</div>
+                    <div class="stat-label">Khóa</div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section id="skills">
-        <h2 class="section-title">Kỹ năng cốt lõi</h2>
         <div class="skills-grid">
-            <div class="skill-tag">Phân tích hệ thống điện</div>
-            <div class="skill-tag">Điện tử công suất</div>
-            <div class="skill-tag">Lập trình STM32 (ADC, DMA)</div>
-            <div class="skill-tag">PLC / TIA Portal</div>
-            <div class="skill-tag">PSIM</div>
-            <div class="skill-tag">Altium Designer</div>
+            <div class="skill-item">Phân tích Hệ thống Điện</div>
+            <div class="skill-item">Điện tử Công suất</div>
+            <div class="skill-item">Lập trình STM32 (ADC, DMA)</div>
+            <div class="skill-item">PLC / TIA Portal (Ladder)</div>
+            <div class="skill-item">PSIM</div>
+            <div class="skill-item">Altium Designer</div>
+            <div class="skill-item">Ansys Maxwell</div>
+            <div class="skill-item">Tư duy Logic</div>
         </div>
     </section>
 
     <section id="projects">
-        <h2 class="section-title">Dự án Kỹ thuật nổi bật</h2>
-        <div class="projects-container">
-            
+        <div class="projects-grid">
             <div class="project-card">
-                <h3 class="project-title">Bộ chuyển đổi DC-DC hai chiều cho pin sạc</h3>
-                <div class="project-tools">Công cụ: PSIM, Tính toán lý thuyết mạch</div>
-                <p class="project-desc">Nghiên cứu, tính toán thiết kế và mô phỏng hệ thống sạc xả pin. Phân tích chi tiết dạng sóng điện áp, dòng điện trong các chế độ hoạt động khác nhau để tối ưu hóa hiệu suất bộ biến đổi.</p>
+                <div class="project-img">Boost | Z-source</div>
+                <div class="project-details">
+                    <h3>Bộ chuyển đổi DC-DC hai chiều</h3>
+                    <p class="project-tools">#PSIM #Lý thuyết mạch #Sạc pin</p>
+                    <p>Mô phỏng, tính toán và phân tích các bộ chuyển đổi Boost, Z-source phục vụ việc sạc và xả pin hai chiều.</p>
+                    <a href="#" class="project-link">Xem chi tiết</a>
+                </div>
             </div>
 
             <div class="project-card">
-                <h3 class="project-title">Thiết kế Trạm biến áp 220/110/22 kV</h3>
-                <div class="project-tools">Kỹ năng: Tính toán ngắn mạch, Lựa chọn thiết bị</div>
-                <p class="project-desc">Thực hiện thiết kế tổng thể trạm biến áp quy mô lớn. Ứng dụng phương pháp ma trận tổng dẫn nút để tính toán dòng ngắn mạch chính xác, từ đó lựa chọn và phối hợp thiết bị đóng cắt an toàn.</p>
+                <div class="project-img">220/110/22 kV</div>
+                <div class="project-details">
+                    <h3>Thiết kế Trạm biến áp 220 kV</h3>
+                    <p class="project-tools">#Tính toán ngắn mạch #Lựa chọn thiết bị</p>
+                    <p>Thực hiện thiết kế tổng thể, tính toán ngắn mạch bằng ma trận tổng dẫn nút cho trạm biến áp.</p>
+                    <a href="#" class="project-link">Xem chi tiết</a>
+                </div>
             </div>
 
             <div class="project-card">
-                <h3 class="project-title">Hệ thống Lấy mẫu Dữ liệu với STM32</h3>
-                <div class="project-tools">Công cụ: C/C++, STM32CubeIDE</div>
-                <p class="project-desc">Lập trình vi điều khiển STM32 thực hiện chức năng đọc dữ liệu từ nhiều kênh ADC đồng thời, kết hợp sử dụng bộ điều khiển truy cập bộ nhớ trực tiếp (DMA) để tối ưu hóa tốc độ và giải phóng tài nguyên CPU.</p>
+                <div class="project-img">STM32 | DMA</div>
+                <div class="project-details">
+                    <h3>Hệ thống Lấy mẫu Dữ liệu STM32</h3>
+                    <p class="project-tools">#C/C++ #STM32CubeIDE #ADC</p>
+                    <p>Lập trình nhúng sử dụng STM32 thực hiện chức năng lấy mẫu ADC đa kênh với DMA để tối ưu hiệu suất.</p>
+                    <a href="#" class="project-link">Xem chi tiết</a>
+                </div>
             </div>
-
         </div>
     </section>
 
     <section id="contact">
-        <h2 class="section-title">Kết nối với tôi</h2>
-        <p>Tôi luôn cởi mở với các cơ hội hợp tác, nghiên cứu và làm việc trong lĩnh vực Kỹ thuật Điện và Tự động hóa.</p>
-        <a href="mailto:email-cua-ban@gmail.com" class="contact-btn">Gửi Email ngay</a>
+        <div class="contact-content">
+            <h2>Kết nối với tôi</h2>
+            <p>Tôi luôn cởi mở với các cơ hội hợp tác, nghiên cứu và làm việc. Hãy gửi email cho tôi hoặc kết nối qua các nền tảng xã hội.</p>
+            <a href="mailto:email-cua-ban@gmail.com" class="contact-btn">Gửi Email ngay</a>
+        </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Nguyễn Trương Tín. Coded with passion.</p>
+        <p>&copy; 2026 Nguyễn Trương Tín. Coded with passion and creativity.</p>
     </footer>
 
+    <script>
+        // Hiệu ứng Mạch điện Nền cho Hero Section
+        const canvas = document.getElementById('hero-circuit');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const nodes = [];
+        const numNodes = 100;
+
+        for (let i = 0; i < numNodes; i++) {
+            nodes.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 2 + 1,
+                vx: Math.random() * 2 - 1,
+                vy: Math.random() * 2 - 1
+            });
+        }
+
+        function drawCircuit() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(0, 188, 212, 0.5)';
+            ctx.strokeStyle = 'rgba(0, 188, 212, 0.2)';
+
+            for (let i = 0; i < numNodes; i++) {
+                ctx.beginPath();
+                ctx.arc(nodes[i].x, nodes[i].y, nodes[i].radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                nodes[i].x += nodes[i].vx;
+                nodes[i].y += nodes[i].vy;
+
+                if (nodes[i].x > canvas.width || nodes[i].x < 0) nodes[i].vx *= -1;
+                if (nodes[i].y > canvas.height || nodes[i].y < 0) nodes[i].vy *= -1;
+
+                for (let j = i + 1; j < numNodes; j++) {
+                    const dx = nodes[i].x - nodes[j].x;
+                    const dy = nodes[i].y - nodes[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 150) {
+                        ctx.beginPath();
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animateCircuit() {
+            drawCircuit();
+            requestAnimationFrame(animateCircuit);
+        }
+
+        animateCircuit();
+
+        // Hiệu ứng Fade-in khi cuộn (Skills & Projects)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    if (entry.target.classList.contains('skill-item')) {
+                        entry.target.classList.add('show-skill-item');
+                    } else if (entry.target.classList.contains('project-card')) {
+                        entry.target.classList.add('show-project-card');
+                    }
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.skill-item, .project-card').forEach((item) => {
+            observer.observe(item);
+        });
+
+    </script>
 </body>
 </html>
