@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nguyễn Trương Tín | Portfolio Kỹ thuật Điện</title>
+    <style>
+        /* CSS Cơ bản & Khởi tạo */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: #0056b3;
+        }
+        
+        /* Header & Điều hướng */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .nav-links a {
+            color: white;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        /* Phần Giới thiệu (Hero Section) */
+        #about {
+            text-align: center;
+            padding: 80px 20px;
+            background-color: #fff;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        #about h1 {
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        #about h2 {
+            font-size: 1.5rem;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+        #about p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        /* Phần Kỹ năng */
+        #skills {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 3px;
+            background-color: #3498db;
+            display: block;
+            margin: 10px auto 0;
+        }
+        .skills-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .skill-tag {
+            background-color: #e8f4f8;
+            color: #2980b9;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            border: 1px solid #bde0f2;
+        }
+
+        /* Phần Dự án */
+        #projects {
+            background-color: #fff;
+            padding: 60px 20px;
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .projects-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .project-card {
+            background: #fff;
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        .project-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .project-tools {
+            font-size: 0.85rem;
+            color: #e67e22;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .project-desc {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        /* Phần Liên hệ */
+        #contact {
+            text-align: center;
+            padding: 60px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .contact-btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        .contact-btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">NTT.</div>
+            <div class="nav-links">
+                <a href="#about">Giới thiệu</a>
+                <a href="#skills">Kỹ năng</a>
+                <a href="#projects">Dự án</a>
+                <a href="#contact">Liên hệ</a>
+            </div>
+        </nav>
+    </header>
+
+    <section id="about">
+        <h1>Nguyễn Trương Tín</h1>
+        <h2>Sinh viên Kỹ thuật Điện (CLC) - Khóa 48</h2>
+        <p>Đam mê nghiên cứu và phát triển các hệ thống điện tử công suất, thiết kế trạm biến áp và lập trình tự động hóa. Định hướng trở thành một kỹ sư chuyên nghiệp, có khả năng giải quyết các bài toán kỹ thuật phức tạp từ lý thuyết đến thực hành.</p>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title">Kỹ năng cốt lõi</h2>
+        <div class="skills-grid">
+            <div class="skill-tag">Phân tích hệ thống điện</div>
+            <div class="skill-tag">Điện tử công suất</div>
+            <div class="skill-tag">Lập trình STM32 (ADC, DMA)</div>
+            <div class="skill-tag">PLC / TIA Portal</div>
+            <div class="skill-tag">PSIM</div>
+            <div class="skill-tag">Altium Designer</div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Dự án Kỹ thuật nổi bật</h2>
+        <div class="projects-container">
+            
+            <div class="project-card">
+                <h3 class="project-title">Bộ chuyển đổi DC-DC hai chiều cho pin sạc</h3>
+                <div class="project-tools">Công cụ: PSIM, Tính toán lý thuyết mạch</div>
+                <p class="project-desc">Nghiên cứu, tính toán thiết kế và mô phỏng hệ thống sạc xả pin. Phân tích chi tiết dạng sóng điện áp, dòng điện trong các chế độ hoạt động khác nhau để tối ưu hóa hiệu suất bộ biến đổi.</p>
+            </div>
+
+            <div class="project-card">
+                <h3 class="project-title">Thiết kế Trạm biến áp 220/110/22 kV</h3>
+                <div class="project-tools">Kỹ năng: Tính toán ngắn mạch, Lựa chọn thiết bị</div>
+                <p class="project-desc">Thực hiện thiết kế tổng thể trạm biến áp quy mô lớn. Ứng dụng phương pháp ma trận tổng dẫn nút để tính toán dòng ngắn mạch chính xác, từ đó lựa chọn và phối hợp thiết bị đóng cắt an toàn.</p>
+            </div>
+
+            <div class="project-card">
+                <h3 class="project-title">Hệ thống Lấy mẫu Dữ liệu với STM32</h3>
+                <div class="project-tools">Công cụ: C/C++, STM32CubeIDE</div>
+                <p class="project-desc">Lập trình vi điều khiển STM32 thực hiện chức năng đọc dữ liệu từ nhiều kênh ADC đồng thời, kết hợp sử dụng bộ điều khiển truy cập bộ nhớ trực tiếp (DMA) để tối ưu hóa tốc độ và giải phóng tài nguyên CPU.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Kết nối với tôi</h2>
+        <p>Tôi luôn cởi mở với các cơ hội hợp tác, nghiên cứu và làm việc trong lĩnh vực Kỹ thuật Điện và Tự động hóa.</p>
+        <a href="mailto:email-cua-ban@gmail.com" class="contact-btn">Gửi Email ngay</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Nguyễn Trương Tín. Coded with passion.</p>
+    </footer>
+
+</body>
+</html>
