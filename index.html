@@ -3,120 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nguyễn Trương Tín | Kỹ sư Kỹ thuật Điện CLC | Portfolio Ấn tượng</title>
+    <title>Nguyễn Trương Tín | Kỹ sư CLC EE | Portfolio Kỹ thuật Số</title>
     <style>
-        /* CSS Khởi tạo & Cơ bản */
+        /* CSS Cơ bản */
         :root {
-            --primary-color: #00bcd4; /* Xanh Cyan */
-            --secondary-color: #fdd835; /* Vàng sáng */
-            --dark-color: #263238; /* Xám đen đậm */
-            --light-bg: #eceff1;
+            --cyan: #00bcd4;
+            --dark-cyan: #006064;
             --white: #ffffff;
-            --text-color: #37474f;
-            --box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --dark-blue: #010409;
+            --box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
             --transition: all 0.3s ease-in-out;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            scroll-behavior: smooth; /* Cuộn mượt mà */
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--dark-blue); color: #fff; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
 
-        body {
-            background-color: var(--light-bg);
-            color: var(--text-color);
-            line-height: 1.6;
-            overflow-x: hidden; /* Ngăn chặn cuộn ngang khi có hiệu ứng */
-        }
+        /* Header */
+        header { background: rgba(1, 4, 9, 0.9); color: #fff; padding: 1rem 0; position: fixed; top: 0; width: 100%; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.2); backdrop-filter: blur(5px); }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .logo { font-size: 1.8rem; font-weight: bold; color: var(--cyan); text-shadow: 0 0 10px var(--cyan); }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        /* Hiệu ứng Mạch điện Nền cho Hero Section */
-        #hero-circuit {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: 1;
-            opacity: 0.1;
-        }
-
-        /* Header & Thanh Điều Hướng */
-        header {
-            background-color: rgba(38, 50, 56, 0.9);
-            color: var(--white);
-            padding: 1rem 0;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            backdrop-filter: blur(5px); /* Hiệu ứng mờ nền */
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            text-shadow: 0 0 10px var(--primary-color);
-        }
-
-        .nav-links {
-            display: flex;
-        }
-
-        .nav-links a {
-            margin-left: 30px;
-            font-weight: 500;
-            position: relative;
-            transition: var(--transition);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--secondary-color);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover {
-            color: var(--secondary-color);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Phần Hero (Giới thiệu) */
+        /* HERO SECTION (Nổi bật nhất) */
         #hero {
             position: relative;
             height: 100vh;
-            background-color: var(--dark-color);
-            color: var(--white);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -125,402 +36,146 @@
             padding: 0 20px;
         }
 
-        .hero-content {
-            z-index: 2;
-            animation: slideInFromTop 1s ease-out;
-        }
-
-        .hero-content h1 {
-            font-size: 4rem;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .hero-content h2 {
-            font-size: 1.8rem;
-            font-weight: 400;
-            color: #b0bec5;
-            margin-bottom: 30px;
-        }
-
-        .hero-btn {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 12px 30px;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            transition: var(--transition);
-            box-shadow: 0 4px 15px rgba(0,188,212,0.4);
-        }
-
-        .hero-btn:hover {
-            transform: translateY(-5px);
-            background-color: var(--white);
-            color: var(--primary-color);
-            box-shadow: 0 8px 20px rgba(255,255,255,0.4);
-        }
-
-        /* Phần Giới thiệu (About Me) */
-        #about {
-            padding: 100px 20px;
-            background-color: var(--white);
-        }
-
-        .about-grid {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 50px;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            font-size: 2.5rem;
-            color: var(--dark-color);
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .about-text h2::before {
-            content: 'Giới thiệu';
+        /* Nền Hologram 3D (Canvas) */
+        #hero-canvas {
             position: absolute;
-            top: -10px;
-            left: -10px;
-            color: #f1f1f1;
-            font-size: 1.2rem;
-            font-weight: 400;
-            z-index: -1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+            z-index: 1;
         }
 
-        .about-text p {
-            font-size: 1.1rem;
-            margin-bottom: 15px;
+        .hero-content { z-index: 2; position: relative; }
+        .hero-content h1 { font-size: 4.5rem; text-transform: uppercase; letter-spacing: 3px; background: linear-gradient(90deg, #fff, var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: pulse 2s infinite alternate; }
+        .hero-content h2 { font-size: 1.8rem; color: #b0bec5; margin-bottom: 20px; font-weight: 400; }
+        .hero-btn { display: inline-block; background-color: var(--cyan); color: #fff; padding: 12px 30px; border-radius: 5px; font-weight: bold; transition: var(--transition); box-shadow: var(--box-shadow); }
+        .hero-btn:hover { background-color: #fff; color: var(--cyan); transform: translateY(-5px); }
+
+        /* Các điểm nối mạch tương tác (Interactive Nodes) */
+        .interactive-nodes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0; left: 0;
+            z-index: 2;
         }
 
-        .about-stats {
-            display: flex;
-            justify-content: space-around;
+        .node {
+            position: absolute;
+            width: 10px; height: 10px;
+            background: var(--cyan);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 10px var(--cyan);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .stat-card {
-            background-color: var(--light-bg);
-            padding: 30px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: var(--box-shadow);
-            transition: var(--transition);
-        }
+        .node:hover { transform: scale(1.5); box-shadow: 0 0 25px #fff; }
 
-        .stat-card:hover {
-            transform: scale(1.05);
-            background-color: var(--white);
-        }
-
-        .stat-card .stat-number {
-            font-size: 3rem;
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-
-        /* Phần Kỹ năng */
-        #skills {
-            padding: 100px 20px;
-            background-color: var(--light-bg);
-        }
-
-        .skills-grid {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-        }
-
-        .skill-item {
-            background-color: var(--white);
-            padding: 30px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: var(--box-shadow);
-            transition: var(--transition);
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .skill-item:hover {
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        }
-
-        .skill-item:nth-child(even) {
-            transform: translateY(-10px);
-        }
-
-        .skill-item h4 {
-            font-size: 1.2rem;
-            color: var(--dark-color);
-            margin-top: 15px;
-        }
-
-        /* Phần Dự án */
-        #projects {
-            padding: 100px 20px;
-            background-color: var(--white);
-        }
-
-        .projects-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-        }
-
-        .project-card {
-            background: var(--light-bg);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: var(--box-shadow);
-            transition: var(--transition);
-            opacity: 0;
-            transform: scale(0.9);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
-
-        .project-img {
-            height: 200px;
-            background-color: var(--dark-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: rgba(255,255,255,0.2);
-            font-size: 2.5rem;
-        }
-
-        .project-details {
-            padding: 25px;
-        }
-
-        .project-details h3 {
-            font-size: 1.4rem;
-            color: var(--dark-color);
-            margin-bottom: 10px;
-        }
-
-        .project-tools {
-            color: var(--primary-color);
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 15px;
-        }
-
-        .project-details p {
-            font-size: 1rem;
-            color: #546e7a;
-            margin-bottom: 20px;
-        }
-
-        .project-link {
-            display: inline-block;
-            background-color: var(--dark-color);
-            color: var(--white);
-            padding: 8px 20px;
+        /* Nhãn hiển thị từ khóa */
+        .node-label {
+            position: absolute;
+            background: rgba(0, 96, 100, 0.9);
+            color: #fff;
+            padding: 5px 12px;
             border-radius: 4px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            transition: var(--transition);
+            font-size: 0.85rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s, transform 0.3s;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            box-shadow: 0 0 10px var(--cyan);
         }
 
-        .project-link:hover {
-            background-color: var(--secondary-color);
-            color: var(--dark-color);
-        }
+        .node:hover .node-label { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-        /* Phần Liên hệ */
-        #contact {
-            padding: 100px 20px;
-            background-color: var(--dark-color);
-            color: var(--white);
-            text-align: center;
-        }
+        /* Phần Kỹ năng & Dự án (Fade-in mượt) */
+        section { padding: 100px 20px; max-width: 1100px; margin: 0 auto; opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
+        .section-visible { opacity: 1; transform: translateY(0); }
+        h2 { font-size: 2.5rem; color: var(--cyan); margin-bottom: 40px; text-align: center; }
 
-        .contact-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .skill-tag { background: #011627; color: var(--cyan); padding: 15px; border-radius: 8px; text-align: center; font-weight: bold; border: 1px solid var(--dark-cyan); }
 
-        .contact-content p {
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto 30px;
-        }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .project-card { background: #011627; border: 1px solid var(--dark-cyan); border-radius: 8px; padding: 20px; }
+        .project-img { height: 150px; background: #0d2137; border-radius: 4px; margin-bottom: 15px; display: flex; justify-content: center; align-items: center; color: rgba(255,255,255,0.1); font-size: 2rem; }
 
-        .contact-btn {
-            display: inline-block;
-            background-color: var(--white);
-            color: var(--dark-color);
-            padding: 12px 30px;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            transition: var(--transition);
-        }
-
-        .contact-btn:hover {
-            background-color: var(--secondary-color);
-            color: var(--dark-color);
-        }
-
-        /* Footer */
-        footer {
-            padding: 20px;
-            background-color: #1a252a;
-            color: rgba(255,255,255,0.5);
-            text-align: center;
-            font-size: 0.9rem;
-        }
-
-        /* Keyframes Animations */
-        @keyframes slideInFromTop {
-            0% { transform: translateY(-50px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        /* JavaScript-triggered animations */
-        .show-skill-item {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-        }
-
-        .show-project-card {
-            opacity: 1 !important;
-            transform: scale(1) !important;
-        }
+        /* Animations */
+        @keyframes pulse { 0% { opacity: 1; } 100% { opacity: 0.8; } }
     </style>
 </head>
 <body>
 
     <header>
         <nav>
-            <div class="logo">NTT.</div>
-            <ul class="nav-links">
-                <li><a href="#hero">Trang chủ</a></li>
-                <li><a href="#about">Giới thiệu</a></li>
-                <li><a href="#skills">Kỹ năng</a></li>
-                <li><a href="#projects">Dự án</a></li>
-                <li><a href="#contact">Liên hệ</a></li>
-            </ul>
+            <div class="logo">NTT.CLC.EE</div>
         </nav>
     </header>
 
     <section id="hero">
-        <canvas id="hero-circuit"></canvas>
+        <canvas id="hero-canvas"></canvas>
+        <div class="interactive-nodes">
+            <div class="node" style="top: 25%; left: 15%;"><span class="node-label">Mạch In PCB</span></div>
+            <div class="node" style="top: 35%; left: 80%;"><span class="node-label">Điện Tử Công Suất</span></div>
+            <div class="node" style="top: 60%; left: 5%;"><span class="node-label">Lập trình STM32</span></div>
+            <div class="node" style="top: 65%; left: 90%;"><span class="node-label">PLC TIA Portal</span></div>
+            <div class="node" style="top: 15%; left: 55%;"><span class="node-label">Mô Phỏng PSIM</span></div>
+            <div class="node" style="top: 80%; left: 30%;"><span class="node-label">Altium Designer</span></div>
+            <div class="node" style="top: 75%; left: 70%;"><span class="node-label">Ansys Maxwell</span></div>
+        </div>
         <div class="hero-content">
-            <h2>Học viên Kỹ thuật Điện CLC - Khóa 48</h2>
+            <h2>Kỹ sư CLC EE | K48</h2>
             <h1>Nguyễn Trương Tín</h1>
-            <p style="color: #b0bec5; max-width: 600px; margin: 0 auto 30px; font-size: 1.1rem;">Khám phá danh mục các dự án kỹ thuật chuyên sâu về điện tử công suất, hệ thống năng lượng và lập trình nhúng của tôi.</p>
+            <p style="color: #b0bec5; max-width: 600px; margin: 0 auto 30px;">Khám phá danh mục các dự án kỹ thuật chuyên sâu về điện tử công suất, hệ thống năng lượng và lập trình nhúng của tôi.</p>
             <a href="#projects" class="hero-btn">Xem Dự án của tôi</a>
         </div>
     </section>
 
-    <section id="about">
-        <div class="about-grid">
-            <div class="about-text">
-                <h2>Cảm hứng Kỹ thuật</h2>
-                <p>Tôi là một sinh viên năng động của Khóa 48, ngành Kỹ thuật Điện Chất lượng cao. Tôi có một tình yêu sâu sắc với việc nghiên cứu và giải quyết các bài toán kỹ thuật phức tạp, đặc biệt là trong các lĩnh vực điện tử công suất, thiết kế trạm biến áp, và điều khiển tự động.</p>
-                <p>Tôi không chỉ dừng lại ở lý thuyết; tôi luôn tìm cách áp dụng kiến thức vào thực tiễn thông qua các dự án thực tế. Mỗi dự án là một cơ hội để tôi vượt qua giới hạn của bản thân.</p>
-            </div>
-            <div class="about-stats">
-                <div class="stat-card">
-                    <div class="stat-number">2+</div>
-                    <div class="stat-label">Năm kinh nghiệm</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">3+</div>
-                    <div class="stat-label">Dự án chuyên sâu</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">48</div>
-                    <div class="stat-label">Khóa</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="skills">
+        <h2>Kỹ năng cốt lõi</h2>
         <div class="skills-grid">
-            <div class="skill-item">Phân tích Hệ thống Điện</div>
-            <div class="skill-item">Điện tử Công suất</div>
-            <div class="skill-item">Lập trình STM32 (ADC, DMA)</div>
-            <div class="skill-item">PLC / TIA Portal (Ladder)</div>
-            <div class="skill-item">PSIM</div>
-            <div class="skill-item">Altium Designer</div>
-            <div class="skill-item">Ansys Maxwell</div>
-            <div class="skill-item">Tư duy Logic</div>
+            <div class="skill-tag">Phân tích Hệ thống Điện</div>
+            <div class="skill-tag">Điện tử Công suất</div>
+            <div class="skill-tag">Lập trình Nhúng</div>
+            <div class="skill-tag">Tự động hóa PLC</div>
         </div>
     </section>
 
     <section id="projects">
+        <h2>Dự án Nổi bật</h2>
         <div class="projects-grid">
             <div class="project-card">
-                <div class="project-img">Boost | Z-source</div>
-                <div class="project-details">
-                    <h3>Bộ chuyển đổi DC-DC hai chiều</h3>
-                    <p class="project-tools">#PSIM #Lý thuyết mạch #Sạc pin</p>
-                    <p>Mô phỏng, tính toán và phân tích các bộ chuyển đổi Boost, Z-source phục vụ việc sạc và xả pin hai chiều.</p>
-                    <a href="#" class="project-link">Xem chi tiết</a>
-                </div>
+                <div class="project-img">DC-DC</div>
+                <h3>Bộ chuyển đổi hai chiều Boost | Z-source</h3>
+                <p style="font-size: 0.9rem; color: #b0bec5;">Nghiên cứu mô phỏng bộ chuyển đổi DC-DC hai chiều phục vụ sạc xả pin.</p>
             </div>
-
             <div class="project-card">
-                <div class="project-img">220/110/22 kV</div>
-                <div class="project-details">
-                    <h3>Thiết kế Trạm biến áp 220 kV</h3>
-                    <p class="project-tools">#Tính toán ngắn mạch #Lựa chọn thiết bị</p>
-                    <p>Thực hiện thiết kế tổng thể, tính toán ngắn mạch bằng ma trận tổng dẫn nút cho trạm biến áp.</p>
-                    <a href="#" class="project-link">Xem chi tiết</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-img">STM32 | DMA</div>
-                <div class="project-details">
-                    <h3>Hệ thống Lấy mẫu Dữ liệu STM32</h3>
-                    <p class="project-tools">#C/C++ #STM32CubeIDE #ADC</p>
-                    <p>Lập trình nhúng sử dụng STM32 thực hiện chức năng lấy mẫu ADC đa kênh với DMA để tối ưu hiệu suất.</p>
-                    <a href="#" class="project-link">Xem chi tiết</a>
-                </div>
+                <div class="project-img">220 kV</div>
+                <h3>Thiết kế Trạm biến áp 220 kV</h3>
+                <p style="font-size: 0.9rem; color: #b0bec5;">Thiết kế tổng thể, tính toán ngắn mạch ma trận tổng dẫn nút.</p>
             </div>
         </div>
     </section>
-
-    <section id="contact">
-        <div class="contact-content">
-            <h2>Kết nối với tôi</h2>
-            <p>Tôi luôn cởi mở với các cơ hội hợp tác, nghiên cứu và làm việc. Hãy gửi email cho tôi hoặc kết nối qua các nền tảng xã hội.</p>
-            <a href="mailto:email-cua-ban@gmail.com" class="contact-btn">Gửi Email ngay</a>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 Nguyễn Trương Tín. Coded with passion and creativity.</p>
-    </footer>
 
     <script>
-        // Hiệu ứng Mạch điện Nền cho Hero Section
-        const canvas = document.getElementById('hero-circuit');
+        // Hiệu ứng Fade-in mượt mà khi cuộn tới phần
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('section-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('section:not(#hero)').forEach((sec) => observer.observe(sec));
+
+        // Nền Hologram Mạch Điện (Canvas)
+        const canvas = document.getElementById('hero-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -533,15 +188,15 @@
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
                 radius: Math.random() * 2 + 1,
-                vx: Math.random() * 2 - 1,
-                vy: Math.random() * 2 - 1
+                vx: Math.random() * 0.5 - 0.25, // Tốc độ chậm hơn
+                vy: Math.random() * 0.5 - 0.25
             });
         }
 
         function drawCircuit() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = 'rgba(0, 188, 212, 0.5)';
-            ctx.strokeStyle = 'rgba(0, 188, 212, 0.2)';
+            ctx.fillStyle = 'rgba(0, 188, 212, 0.6)';
+            ctx.strokeStyle = 'rgba(0, 188, 212, 0.1)';
 
             for (let i = 0; i < numNodes; i++) {
                 ctx.beginPath();
@@ -555,11 +210,8 @@
                 if (nodes[i].y > canvas.height || nodes[i].y < 0) nodes[i].vy *= -1;
 
                 for (let j = i + 1; j < numNodes; j++) {
-                    const dx = nodes[i].x - nodes[j].x;
-                    const dy = nodes[i].y - nodes[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-
-                    if (dist < 150) {
+                    const dist = Math.sqrt((nodes[i].x - nodes[j].x)**2 + (nodes[i].y - nodes[j].y)**2);
+                    if (dist < 120) {
                         ctx.beginPath();
                         ctx.moveTo(nodes[i].x, nodes[i].y);
                         ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -567,34 +219,15 @@
                     }
                 }
             }
+            requestAnimationFrame(drawCircuit);
         }
+        drawCircuit();
 
-        function animateCircuit() {
-            drawCircuit();
-            requestAnimationFrame(animateCircuit);
-        }
-
-        animateCircuit();
-
-        // Hiệu ứng Fade-in khi cuộn (Skills & Projects)
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    if (entry.target.classList.contains('skill-item')) {
-                        entry.target.classList.add('show-skill-item');
-                    } else if (entry.target.classList.contains('project-card')) {
-                        entry.target.classList.add('show-project-card');
-                    }
-                }
-            });
-        }, {
-            threshold: 0.1
+        // Xử lý resize canvas khi đổi kích thước cửa sổ
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         });
-
-        document.querySelectorAll('.skill-item, .project-card').forEach((item) => {
-            observer.observe(item);
-        });
-
     </script>
 </body>
 </html>
